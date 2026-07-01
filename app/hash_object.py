@@ -18,15 +18,16 @@ def hash_object(dir_name,file_name,args_len):
     header=header.encode()
     
     final_content = header+content
-    hash_val = hashlib.sha1(final_content).hexdigest()
+    hash_val = hashlib.sha1(final_content)
     # print('hash value is : \n' + hash_val)
-    return hash_val
+    
+    hash_value_hex = hash_val.hexdigest()
     
     # -w flag
     if args_len==4:
 
-        obj_dir_name = hash_val[:2]
-        obj_file_name = hash_val[2:]
+        obj_dir_name = hash_value_hex[:2]
+        obj_file_name = hash_value_hex[2:]
 
         obj_path = f'{dir_name}/.git/objects/{obj_dir_name}'
 
@@ -37,3 +38,5 @@ def hash_object(dir_name,file_name,args_len):
             f.write(compressed_content)
 
         print("file compressed and written successfully")
+
+    return hash_val

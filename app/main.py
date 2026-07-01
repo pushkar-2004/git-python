@@ -25,13 +25,13 @@ def main():
         file_name = sys.argv[-1]
         # path = f'{dir_name}/{file_name}'
         hash_val = hash_object(dir_path,file_name,len(sys.argv))
-        print(hash_val)
+        print(hash_val.hexdigest())
     elif command == "ls-tree":
         ls_tree(sys)
     elif command == "write-tree":
 
         hash_value,tree_object_content=write_tree(dir_path)
-
+        hash_value=hash_value.hexdigest()
         print(hash_value)
 
         dir_path = hash_value[:2]
